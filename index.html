@@ -24,96 +24,409 @@
     --text2: #4a4a6a;
     --text3: #9090aa;
     --vermelho: #cc2200;
-
-    /* ====================================================
-       👇 ÚNICA LINHA QUE VOCÊ PRECISA ALTERAR
-       Substitua pela URL do seu servidor no Railway
-       Exemplo: https://leao-backend-production.up.railway.app
-    ==================================================== */
-    --api-url: 'https://SEU-SERVIDOR.up.railway.app';
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--bg); color: var(--text); font-family: 'Nunito', sans-serif; font-size: 14px; min-height: 100vh; overflow-x: hidden; }
-  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23009C3B' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); pointer-events: none; z-index: 0; }
 
-  header { position: relative; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 14px 28px; background: var(--azul); border-bottom: 4px solid var(--amarelo); box-shadow: 0 4px 20px rgba(0,39,118,0.2); }
-  .logo { display: flex; align-items: center; gap: 14px; }
-  .logo-icon { width: 46px; height: 46px; background: var(--amarelo); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 26px; box-shadow: 0 4px 12px rgba(255,223,0,0.4); flex-shrink: 0; }
-  .logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 3px; color: #fff; line-height: 1; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* TEXTURE */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23009C3B' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* HEADER */
+  header {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 28px;
+    background: var(--azul);
+    border-bottom: 4px solid var(--amarelo);
+    box-shadow: 0 4px 20px rgba(0,39,118,0.2);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .logo-icon {
+    width: 46px;
+    height: 46px;
+    background: var(--amarelo);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 4px 12px rgba(255,223,0,0.4);
+    flex-shrink: 0;
+  }
+
+  .logo-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 3px;
+    color: #fff;
+    line-height: 1;
+  }
+
   .logo-text span { color: var(--amarelo); }
-  .logo-sub { font-size: 11px; color: rgba(255,255,255,0.6); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px; font-weight: 500; }
-  .header-right { display: flex; align-items: center; gap: 14px; }
-  .prazo-badge { background: var(--vermelho); color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; letter-spacing: 0.5px; animation: pulse-badge 2s infinite; }
-  @keyframes pulse-badge { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; } }
-  .year-pill { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.8); padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; }
 
-  .app { position: relative; z-index: 1; display: grid; grid-template-columns: 290px 1fr 350px; height: calc(100vh - 74px); }
+  .logo-sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 2px;
+    font-weight: 500;
+  }
 
-  .sidebar { border-right: 1px solid var(--border); display: flex; flex-direction: column; background: var(--surface); overflow-y: auto; box-shadow: 2px 0 12px rgba(0,0,0,0.04); }
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .prazo-badge {
+    background: var(--vermelho);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    animation: pulse-badge 2s infinite;
+  }
+
+  @keyframes pulse-badge {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+  }
+
+  .year-pill {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.8);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  /* LAYOUT */
+  .app {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 290px 1fr 350px;
+    height: calc(100vh - 74px);
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    overflow-y: auto;
+    box-shadow: 2px 0 12px rgba(0,0,0,0.04);
+  }
+
   .sidebar::-webkit-scrollbar { width: 4px; }
   .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-  .sidebar-section { padding: 20px; border-bottom: 1px solid var(--border); }
-  .sidebar-title { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--text3); margin-bottom: 14px; }
 
-  .drop-zone { border: 2px dashed var(--border); border-radius: 14px; padding: 26px 16px; text-align: center; cursor: pointer; transition: all 0.25s; background: var(--bg2); }
-  .drop-zone:hover, .drop-zone.drag-over { border-color: var(--verde); background: rgba(0,156,59,0.05); }
+  .sidebar-section {
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sidebar-title {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 14px;
+  }
+
+  /* DROP ZONE */
+  .drop-zone {
+    border: 2px dashed var(--border);
+    border-radius: 14px;
+    padding: 26px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s;
+    background: var(--bg2);
+  }
+
+  .drop-zone:hover, .drop-zone.drag-over {
+    border-color: var(--verde);
+    background: rgba(0,156,59,0.05);
+  }
+
   .drop-icon { font-size: 34px; margin-bottom: 10px; display: block; }
-  .drop-label { font-size: 13px; color: var(--text2); line-height: 1.5; }
+
+  .drop-label {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+
   .drop-label strong { color: var(--verde); }
   .drop-types { font-size: 11px; color: var(--text3); margin-top: 6px; }
+
   input[type="file"] { display: none; }
 
+  /* FILE LIST */
   .file-list { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
-  .file-item { display: flex; align-items: center; gap: 10px; background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; transition: all 0.2s; }
+
+  .file-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    transition: all 0.2s;
+  }
+
   .file-item.processing { border-color: var(--verde); animation: pulse-border 1.5s infinite; }
   .file-item.done { border-color: rgba(0,156,59,0.5); background: rgba(0,156,59,0.04); }
   .file-item.error { border-color: rgba(204,34,0,0.4); }
-  @keyframes pulse-border { 0%, 100% { border-color: rgba(0,156,59,0.4); } 50% { border-color: var(--verde); } }
+
+  @keyframes pulse-border {
+    0%, 100% { border-color: rgba(0,156,59,0.4); }
+    50% { border-color: var(--verde); }
+  }
+
   .file-icon { font-size: 18px; flex-shrink: 0; }
   .file-info { flex: 1; min-width: 0; }
   .file-name { font-size: 12px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text); }
   .file-status { font-size: 11px; color: var(--text3); margin-top: 2px; }
   .file-status.ok { color: var(--verde); font-weight: 700; }
   .file-status.err { color: var(--vermelho); }
-  .file-remove { background: none; border: none; color: var(--text3); cursor: pointer; font-size: 16px; padding: 2px; transition: color 0.2s; }
+
+  .file-remove {
+    background: none;
+    border: none;
+    color: var(--text3);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 2px;
+    transition: color 0.2s;
+  }
   .file-remove:hover { color: var(--vermelho); }
 
-  .btn-process { width: 100%; background: linear-gradient(135deg, var(--verde), var(--verde2)); border: none; color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; padding: 13px; border-radius: 12px; cursor: pointer; transition: all 0.25s; margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 16px rgba(0,156,59,0.3); }
-  .btn-process:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,156,59,0.4); }
+  /* PROCESS BUTTON */
+  .btn-process {
+    width: 100%;
+    background: linear-gradient(135deg, var(--verde), var(--verde2));
+    border: none;
+    color: #fff;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+    padding: 13px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.25s;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 4px 16px rgba(0,156,59,0.3);
+  }
+
+  .btn-process:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,156,59,0.4);
+  }
+
   .btn-process:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
 
+  /* FICHAS NAV */
   .nav-fichas { padding: 16px 20px; border-bottom: 1px solid var(--border); }
-  .ficha-btn { display: flex; align-items: center; gap: 10px; width: 100%; background: none; border: none; color: var(--text2); padding: 9px 12px; border-radius: 10px; cursor: pointer; font-size: 12px; font-family: 'Nunito', sans-serif; font-weight: 600; text-align: left; transition: all 0.2s; margin-bottom: 2px; }
+
+  .ficha-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--text2);
+    padding: 9px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    text-align: left;
+    transition: all 0.2s;
+    margin-bottom: 2px;
+  }
+
   .ficha-btn:hover { background: var(--bg2); color: var(--text); }
   .ficha-btn.active { background: rgba(0,39,118,0.08); color: var(--azul); border-left: 3px solid var(--azul); font-weight: 700; }
-  .ficha-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); flex-shrink: 0; transition: background 0.2s; }
-  .ficha-btn.active .ficha-dot { background: var(--azul); }
   .ficha-btn.filled .ficha-dot { background: var(--verde) !important; }
 
-  .main { overflow-y: auto; background: var(--bg); }
+  .ficha-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); flex-shrink: 0; transition: background 0.2s; }
+  .ficha-btn.active .ficha-dot { background: var(--azul); }
+
+  /* MAIN */
+  .main {
+    overflow-y: auto;
+    background: var(--bg);
+  }
+
   .main::-webkit-scrollbar { width: 5px; }
   .main::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
-  .welcome { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; text-align: center; gap: 20px; padding: 40px; }
-  .welcome-lion { width: 100px; height: 100px; background: linear-gradient(135deg, var(--amarelo), var(--amarelo2)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 52px; box-shadow: 0 8px 32px rgba(255,223,0,0.4); animation: float 3s ease-in-out infinite; }
-  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-  .welcome h2 { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 2px; color: var(--azul); }
-  .welcome p { color: var(--text2); font-size: 15px; max-width: 400px; line-height: 1.7; }
-  .welcome-tips { display: flex; flex-direction: column; gap: 10px; text-align: left; width: 100%; max-width: 380px; }
-  .tip-item { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; font-size: 13px; color: var(--text2); font-weight: 600; }
+  /* WELCOME */
+  .welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    gap: 20px;
+    padding: 40px;
+  }
 
-  .loading-state { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 24px; text-align: center; padding: 40px; }
-  .loading-lion { width: 80px; height: 80px; background: linear-gradient(135deg, var(--amarelo), var(--amarelo2)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 40px; animation: roar 1s ease-in-out infinite alternate; box-shadow: 0 8px 32px rgba(255,223,0,0.5); }
-  @keyframes roar { from { transform: scale(1); } to { transform: scale(1.08); } }
+  .welcome-lion {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, var(--amarelo), var(--amarelo2));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 52px;
+    box-shadow: 0 8px 32px rgba(255,223,0,0.4);
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .welcome h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    letter-spacing: 2px;
+    color: var(--azul);
+  }
+
+  .welcome p { color: var(--text2); font-size: 15px; max-width: 400px; line-height: 1.7; }
+
+  .welcome-tips {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+    width: 100%;
+    max-width: 380px;
+  }
+
+  .tip-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--text2);
+    font-weight: 600;
+  }
+
+  /* LOADING */
+  .loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 24px;
+    text-align: center;
+    padding: 40px;
+  }
+
+  .loading-lion {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--amarelo), var(--amarelo2));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    animation: roar 1s ease-in-out infinite alternate;
+    box-shadow: 0 8px 32px rgba(255,223,0,0.5);
+  }
+
+  @keyframes roar {
+    from { transform: scale(1); box-shadow: 0 8px 32px rgba(255,223,0,0.4); }
+    to { transform: scale(1.08); box-shadow: 0 12px 40px rgba(255,223,0,0.6); }
+  }
+
   .loading-title { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; color: var(--azul); }
   .loading-sub { font-size: 14px; color: var(--text2); }
+
   .loading-steps { display: flex; flex-direction: column; gap: 8px; width: 100%; max-width: 320px; }
-  .loading-step { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text3); padding: 10px 16px; border-radius: 10px; background: var(--surface); border: 1px solid var(--border); font-weight: 600; transition: all 0.3s; }
+
+  .loading-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text3);
+    padding: 10px 16px;
+    border-radius: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+
   .loading-step.active { color: var(--verde); border-color: rgba(0,156,59,0.4); background: rgba(0,156,59,0.05); }
   .loading-step.complete { color: var(--verde); }
 
-  .summary-bar { padding: 14px 24px; background: var(--azul); display: flex; gap: 24px; align-items: center; overflow-x: auto; flex-shrink: 0; border-bottom: 3px solid var(--amarelo); }
+  /* SUMMARY BAR */
+  .summary-bar {
+    padding: 14px 24px;
+    background: var(--azul);
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    overflow-x: auto;
+    flex-shrink: 0;
+    border-bottom: 3px solid var(--amarelo);
+  }
+
   .summary-item { display: flex; flex-direction: column; align-items: flex-start; flex-shrink: 0; }
   .summary-label { font-size: 10px; color: rgba(255,255,255,0.5); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px; font-weight: 600; }
   .summary-val { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 1px; color: #fff; }
@@ -121,79 +434,333 @@
   .summary-val.neg { color: #ff7070; }
   .summary-val.neu { color: var(--amarelo); }
   .summary-div { width: 1px; background: rgba(255,255,255,0.15); align-self: stretch; flex-shrink: 0; }
-  .btn-export { margin-left: auto; background: rgba(255,223,0,0.15); border: 1px solid rgba(255,223,0,0.4); color: var(--amarelo); padding: 8px 18px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: 'Nunito', sans-serif; transition: all 0.2s; flex-shrink: 0; }
+
+  .btn-export {
+    margin-left: auto;
+    background: rgba(255,223,0,0.15);
+    border: 1px solid rgba(255,223,0,0.4);
+    color: var(--amarelo);
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    letter-spacing: 0.5px;
+  }
+
   .btn-export:hover { background: rgba(255,223,0,0.25); }
 
+  /* REPORT */
   #reportContent { padding: 28px; }
+
   .report-section { margin-bottom: 32px; display: none; }
-  .report-header { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 2px solid var(--border); }
-  .report-header-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+
+  .report-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .report-header-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
   .report-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; color: var(--azul); }
   .report-subtitle { font-size: 12px; color: var(--text2); margin-top: 2px; }
-  .section-tag { display: inline-block; font-size: 10px; padding: 3px 9px; border-radius: 20px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; margin-left: 8px; vertical-align: middle; font-family: 'Nunito', sans-serif; }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 10px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-left: 8px;
+    vertical-align: middle;
+    font-family: 'Nunito', sans-serif;
+  }
+
+  /* FIELD GRID */
   .field-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .field-grid.cols-1 { grid-template-columns: 1fr; }
   .field-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
-  .field-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; transition: all 0.2s; }
+
+  .field-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    transition: all 0.2s;
+  }
+
   .field-item.highlighted { border-color: rgba(0,156,59,0.4); background: rgba(0,156,59,0.04); }
   .field-item.warn { border-color: rgba(255,223,0,0.6); background: rgba(255,223,0,0.06); }
   .field-item.danger { border-color: rgba(204,34,0,0.3); background: rgba(204,34,0,0.04); }
+
   .field-label { font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text3); margin-bottom: 6px; }
   .field-code { font-size: 10px; color: var(--verde); font-family: monospace; margin-bottom: 4px; font-weight: 700; }
+
   .field-value { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.5px; color: var(--text); }
   .field-value.positive { color: var(--verde); }
   .field-value.negative { color: var(--vermelho); }
   .field-value.neutral { color: var(--azul); }
   .field-value.empty { font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 400; color: var(--text3); font-style: italic; }
+
   .field-source { font-size: 11px; color: var(--text3); margin-top: 4px; font-weight: 600; }
+
+  /* TABLE */
   .report-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .report-table th { text-align: left; padding: 11px 14px; font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text3); border-bottom: 2px solid var(--border); background: var(--bg2); }
-  .report-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--text2); font-weight: 600; }
+
+  .report-table th {
+    text-align: left;
+    padding: 11px 14px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text3);
+    border-bottom: 2px solid var(--border);
+    background: var(--bg2);
+  }
+
+  .report-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text2);
+    font-weight: 600;
+  }
+
   .report-table tr:hover td { background: rgba(0,39,118,0.02); }
   .report-table .td-value { font-family: 'Bebas Neue', sans-serif; font-size: 16px; color: var(--text); }
   .report-table .td-pos { color: var(--verde); }
   .report-table .td-neg { color: var(--vermelho); }
-  .alert-box { background: rgba(255,223,0,0.1); border: 2px solid rgba(255,223,0,0.4); border-radius: 12px; padding: 14px 18px; font-size: 13px; color: #7a6000; line-height: 1.6; margin-bottom: 14px; display: flex; gap: 12px; font-weight: 600; }
+
+  /* ALERT BOX */
+  .alert-box {
+    background: rgba(255,223,0,0.1);
+    border: 2px solid rgba(255,223,0,0.4);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: #7a6000;
+    line-height: 1.6;
+    margin-bottom: 14px;
+    display: flex;
+    gap: 12px;
+    font-weight: 600;
+  }
+
   .alert-box.info { background: rgba(0,39,118,0.06); border-color: rgba(0,39,118,0.2); color: var(--azul); }
   .alert-box.danger { background: rgba(204,34,0,0.06); border-color: rgba(204,34,0,0.3); color: var(--vermelho); }
-  .spinner { width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin 0.7s linear infinite; flex-shrink: 0; }
+
+  /* SPINNER */
+  .spinner {
+    width: 18px; height: 18px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    flex-shrink: 0;
+  }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  .chat-panel { border-left: 1px solid var(--border); display: flex; flex-direction: column; background: var(--surface); box-shadow: -2px 0 12px rgba(0,0,0,0.04); }
-  .chat-header { padding: 16px 20px; background: var(--azul); display: flex; align-items: center; gap: 12px; border-bottom: 3px solid var(--amarelo); }
-  .leo-avatar { width: 42px; height: 42px; background: var(--amarelo); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(255,223,0,0.3); }
+  /* CHAT PANEL */
+  .chat-panel {
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    box-shadow: -2px 0 12px rgba(0,0,0,0.04);
+  }
+
+  .chat-header {
+    padding: 16px 20px;
+    background: var(--azul);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 3px solid var(--amarelo);
+  }
+
+  .leo-avatar {
+    width: 42px;
+    height: 42px;
+    background: var(--amarelo);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(255,223,0,0.3);
+  }
+
   .chat-header-info h3 { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; color: #fff; }
   .chat-header-info p { font-size: 11px; color: rgba(255,255,255,0.6); font-weight: 600; }
-  .online { color: #5eff9e !important; }
-  .chat-messages { flex: 1; overflow-y: auto; padding: 18px; display: flex; flex-direction: column; gap: 14px; background: var(--bg2); }
+  .chat-header-info .online { color: #5eff9e; }
+
+  .chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: var(--bg2);
+  }
+
   .chat-messages::-webkit-scrollbar { width: 4px; }
   .chat-messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
   .msg { display: flex; gap: 10px; animation: fadeUp 0.3s ease; }
   .msg.user { flex-direction: row-reverse; }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-  .msg-avatar { width: 32px; height: 32px; border-radius: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 16px; margin-top: 2px; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .msg-avatar {
+    width: 32px; height: 32px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    margin-top: 2px;
+  }
+
   .msg-avatar.ai { background: var(--amarelo); box-shadow: 0 2px 8px rgba(255,223,0,0.3); }
   .msg-avatar.user { background: var(--azul); }
-  .msg-bubble { max-width: 82%; padding: 12px 16px; border-radius: 14px; font-size: 13px; line-height: 1.65; font-weight: 500; }
-  .msg.ai .msg-bubble { background: var(--surface); border: 1px solid var(--border); border-top-left-radius: 4px; color: var(--text); box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-  .msg.user .msg-bubble { background: var(--azul); border-top-right-radius: 4px; color: #fff; }
+
+  .msg-bubble {
+    max-width: 82%;
+    padding: 12px 16px;
+    border-radius: 14px;
+    font-size: 13px;
+    line-height: 1.65;
+    font-weight: 500;
+  }
+
+  .msg.ai .msg-bubble {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top-left-radius: 4px;
+    color: var(--text);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  .msg.user .msg-bubble {
+    background: var(--azul);
+    border-top-right-radius: 4px;
+    color: #fff;
+  }
+
   .msg-bubble strong { color: var(--verde); }
   .msg.user .msg-bubble strong { color: var(--amarelo); }
   .msg-bubble .highlight { background: rgba(0,156,59,0.12); padding: 1px 6px; border-radius: 4px; font-family: monospace; font-size: 12px; color: var(--verde); font-weight: 700; }
-  .quick-questions { padding: 12px 16px; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 6px; background: var(--surface); }
-  .quick-q { background: var(--bg2); border: 1px solid var(--border); color: var(--text2); padding: 5px 12px; border-radius: 20px; font-size: 11px; cursor: pointer; transition: all 0.2s; font-family: 'Nunito', sans-serif; font-weight: 700; }
+
+  /* QUICK QUESTIONS */
+  .quick-questions {
+    padding: 12px 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    background: var(--surface);
+  }
+
+  .quick-q {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    color: var(--text2);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+  }
+
   .quick-q:hover { border-color: var(--verde); color: var(--verde); background: rgba(0,156,59,0.05); }
-  .chat-input-wrap { padding: 14px 16px; border-top: 2px solid var(--border); display: flex; gap: 10px; align-items: flex-end; background: var(--surface); }
-  .chat-input { flex: 1; background: var(--bg2); border: 2px solid var(--border); color: var(--text); font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 600; padding: 10px 14px; border-radius: 12px; resize: none; max-height: 100px; outline: none; transition: border-color 0.2s; line-height: 1.5; }
+
+  /* CHAT INPUT */
+  .chat-input-wrap {
+    padding: 14px 16px;
+    border-top: 2px solid var(--border);
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    background: var(--surface);
+  }
+
+  .chat-input {
+    flex: 1;
+    background: var(--bg2);
+    border: 2px solid var(--border);
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 14px;
+    border-radius: 12px;
+    resize: none;
+    max-height: 100px;
+    outline: none;
+    transition: border-color 0.2s;
+    line-height: 1.5;
+  }
+
   .chat-input:focus { border-color: var(--verde); }
   .chat-input::placeholder { color: var(--text3); font-weight: 500; }
-  .chat-send { background: var(--verde); border: none; color: #fff; width: 42px; height: 42px; border-radius: 12px; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,156,59,0.3); }
+
+  .chat-send {
+    background: var(--verde);
+    border: none;
+    color: #fff;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(0,156,59,0.3);
+  }
+
   .chat-send:hover { background: var(--verde3); transform: scale(1.05); }
   .chat-send:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
   .typing-dots { display: flex; gap: 4px; padding: 4px 2px; }
   .typing-dots span { width: 7px; height: 7px; background: var(--verde); border-radius: 50%; animation: bounce 1.2s infinite; opacity: 0.6; }
   .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
   .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
-  @keyframes bounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-6px); } }
+
+  @keyframes bounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-6px); }
+  }
+
+  /* TAGS */
   .tag-trib { background: rgba(0,156,59,0.12); color: var(--verde2); }
   .tag-isento { background: rgba(0,39,118,0.1); color: var(--azul); }
   .tag-deduc { background: rgba(255,223,0,0.2); color: #7a6000; }
@@ -218,12 +785,17 @@
 </header>
 
 <div class="app">
+
+  <!-- SIDEBAR -->
   <div class="sidebar">
     <div class="sidebar-section">
       <div class="sidebar-title">📁 Seus Documentos</div>
       <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
         <span class="drop-icon">📄</span>
-        <div class="drop-label"><strong>Clique ou arraste</strong><br>seus documentos aqui</div>
+        <div class="drop-label">
+          <strong>Clique ou arraste</strong><br>
+          seus documentos aqui
+        </div>
         <div class="drop-types">Kit IR · Informes · Extratos · Notas</div>
       </div>
       <input type="file" id="fileInput" multiple accept=".pdf,.png,.jpg,.jpeg,.xlsx,.csv">
@@ -233,27 +805,51 @@
         <span id="btnLabel">Analisar com o Léo</span>
       </button>
     </div>
+
     <div class="nav-fichas">
       <div class="sidebar-title">📋 Fichas da Declaração</div>
-      <button class="ficha-btn active" onclick="showFicha('identificacao')" id="btn-identificacao"><span class="ficha-dot"></span> Identificação</button>
-      <button class="ficha-btn" onclick="showFicha('rendimentos-trib')" id="btn-rendimentos-trib"><span class="ficha-dot"></span> Rendimentos Tributáveis</button>
-      <button class="ficha-btn" onclick="showFicha('rendimentos-isentos')" id="btn-rendimentos-isentos"><span class="ficha-dot"></span> Rendimentos Isentos</button>
-      <button class="ficha-btn" onclick="showFicha('rendimentos-exclusivos')" id="btn-rendimentos-exclusivos"><span class="ficha-dot"></span> Tributação Exclusiva</button>
-      <button class="ficha-btn" onclick="showFicha('deducoes')" id="btn-deducoes"><span class="ficha-dot"></span> Pagamentos / Deduções</button>
-      <button class="ficha-btn" onclick="showFicha('bens')" id="btn-bens"><span class="ficha-dot"></span> Bens e Direitos</button>
-      <button class="ficha-btn" onclick="showFicha('dividas')" id="btn-dividas"><span class="ficha-dot"></span> Dívidas e Ônus</button>
-      <button class="ficha-btn" onclick="showFicha('renda-variavel')" id="btn-renda-variavel"><span class="ficha-dot"></span> Renda Variável</button>
-      <button class="ficha-btn" onclick="showFicha('resumo')" id="btn-resumo"><span class="ficha-dot"></span> Resumo Final</button>
+      <button class="ficha-btn active" onclick="showFicha('identificacao')" id="btn-identificacao">
+        <span class="ficha-dot"></span> Identificação
+      </button>
+      <button class="ficha-btn" onclick="showFicha('rendimentos-trib')" id="btn-rendimentos-trib">
+        <span class="ficha-dot"></span> Rendimentos Tributáveis
+      </button>
+      <button class="ficha-btn" onclick="showFicha('rendimentos-isentos')" id="btn-rendimentos-isentos">
+        <span class="ficha-dot"></span> Rendimentos Isentos
+      </button>
+      <button class="ficha-btn" onclick="showFicha('rendimentos-exclusivos')" id="btn-rendimentos-exclusivos">
+        <span class="ficha-dot"></span> Tributação Exclusiva
+      </button>
+      <button class="ficha-btn" onclick="showFicha('deducoes')" id="btn-deducoes">
+        <span class="ficha-dot"></span> Pagamentos / Deduções
+      </button>
+      <button class="ficha-btn" onclick="showFicha('bens')" id="btn-bens">
+        <span class="ficha-dot"></span> Bens e Direitos
+      </button>
+      <button class="ficha-btn" onclick="showFicha('dividas')" id="btn-dividas">
+        <span class="ficha-dot"></span> Dívidas e Ônus
+      </button>
+      <button class="ficha-btn" onclick="showFicha('renda-variavel')" id="btn-renda-variavel">
+        <span class="ficha-dot"></span> Renda Variável
+      </button>
+      <button class="ficha-btn" onclick="showFicha('resumo')" id="btn-resumo">
+        <span class="ficha-dot"></span> Resumo Final
+      </button>
     </div>
+
     <div class="sidebar-section" style="margin-top:auto;">
       <div style="text-align:center;">
         <div style="font-size:22px;margin-bottom:8px;">🔒</div>
-        <div style="font-size:11px;color:var(--text3);line-height:1.7;font-weight:600;">Seus documentos são processados com segurança. Nenhum dado é armazenado.</div>
+        <div style="font-size:11px;color:var(--text3);line-height:1.7;font-weight:600;">
+          Seus documentos são processados com segurança. Nenhum dado é armazenado nos nossos servidores.
+        </div>
       </div>
     </div>
   </div>
 
+  <!-- MAIN -->
   <div class="main" id="mainContent">
+
     <div class="welcome" id="welcomeState">
       <div class="welcome-lion">🦁</div>
       <h2>Olá! Sou o Léo.</h2>
@@ -266,11 +862,12 @@
         <div class="tip-item">📋 <span>DARFs, recibos e comprovantes</span></div>
       </div>
     </div>
+
     <div class="loading-state" id="loadingState" style="display:none;">
       <div class="loading-lion">🦁</div>
       <div class="loading-title">Léo está analisando...</div>
       <div class="loading-sub">Lendo seus documentos e identificando os campos</div>
-      <div class="loading-steps">
+      <div class="loading-steps" id="loadingSteps">
         <div class="loading-step active" id="step1">📖 Lendo e extraindo texto dos PDFs</div>
         <div class="loading-step" id="step2">🔍 Identificando campos do IR</div>
         <div class="loading-step" id="step3">🧮 Calculando totais e verificando</div>
@@ -278,9 +875,11 @@
         <div class="loading-step" id="step5">⚠️ Verificando alertas e pendências</div>
       </div>
     </div>
+
     <div id="reportContent" style="display:none;"></div>
   </div>
 
+  <!-- CHAT LEO -->
   <div class="chat-panel">
     <div class="chat-header">
       <div class="leo-avatar">🦁</div>
@@ -289,19 +888,33 @@
         <p><span class="online">●</span> Assistente de IR · Online</p>
       </div>
     </div>
+
     <div class="chat-messages" id="chatMessages">
       <div class="msg ai">
         <div class="msg-avatar ai">🦁</div>
-        <div class="msg-bubble">Olá! Sou o <strong>Léo</strong>, seu assistente especialista em Imposto de Renda. 🇧🇷<br><br>Sobe seus documentos e clique em <strong>Analisar com o Léo</strong> — ou me faz uma pergunta agora!</div>
+        <div class="msg-bubble">
+          Olá! Sou o <strong>Léo</strong>, seu assistente especialista em Imposto de Renda. 🇧🇷
+          <br><br>
+          Posso te ajudar com:<br>
+          • Dúvidas sobre tributação de investimentos<br>
+          • Deduções permitidas em lei<br>
+          • Como declarar bens e direitos<br>
+          • Rendimentos isentos x tributáveis<br>
+          • Prazos, multas e penalidades<br><br>
+          Sobe seus documentos e clique em <strong>Analisar com o Léo</strong> — ou me faz uma pergunta agora!
+        </div>
       </div>
     </div>
+
     <div class="quick-questions">
       <button class="quick-q" onclick="askQuestion('O que é o Kit IR e como usar?')">📦 O que é Kit IR?</button>
       <button class="quick-q" onclick="askQuestion('Preciso declarar meu FGTS?')">🏦 Declarar FGTS?</button>
       <button class="quick-q" onclick="askQuestion('Dividendos de ações são isentos?')">📈 Dividendos isentos?</button>
       <button class="quick-q" onclick="askQuestion('Como declarar FIIs no imposto de renda?')">🏢 FIIs no IR?</button>
+      <button class="quick-q" onclick="askQuestion('Posso deduzir plano de saúde no IR?')">🏥 Plano de saúde?</button>
       <button class="quick-q" onclick="askQuestion('Qual o prazo e a multa por atraso no IR 2025?')">⏰ Prazo e multa?</button>
     </div>
+
     <div class="chat-input-wrap">
       <textarea class="chat-input" id="chatInput" placeholder="Pergunte para o Léo sobre seu IR..." rows="1" onkeydown="handleKey(event)"></textarea>
       <button class="chat-send" id="chatSend" onclick="sendChat()">➤</button>
@@ -310,271 +923,450 @@
 </div>
 
 <script>
-  // ====================================================
-  // 👇 ÚNICA LINHA QUE VOCÊ PRECISA ALTERAR
-  // Cole aqui a URL do seu servidor no Railway
-  // Exemplo: https://leao-backend-production.up.railway.app
-  // ====================================================
-  const API_URL = 'https://SEU-SERVIDOR.up.railway.app';
+// ==================== STATE ====================
+let files = [];
+let reportData = null;
+let currentFicha = 'identificacao';
+let chatHistory = [];
+let isProcessing = false;
+let isChatting = false;
 
-  let files = [], reportData = null, currentFicha = 'identificacao';
-  let chatHistory = [], isProcessing = false, isChatting = false;
+// ── URL do seu backend — troque pela URL do Railway depois do deploy ──
+const API_URL = 'https://leao-backend-production.up.railway.app';
 
-  // FILES
-  const dropZone = document.getElementById('dropZone');
-  const fileInput = document.getElementById('fileInput');
-  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
-  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
-  dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('drag-over'); addFiles([...e.dataTransfer.files]); });
-  fileInput.addEventListener('change', () => addFiles([...fileInput.files]));
+// ==================== FILES ====================
+const dropZone = document.getElementById('dropZone');
+const fileInput = document.getElementById('fileInput');
 
-  function addFiles(newFiles) {
-    newFiles.forEach(f => { if (!files.find(x => x.name === f.name)) files.push({ file: f, status: 'pending', id: Date.now() + Math.random() }); });
-    renderFileList();
-    document.getElementById('btnProcess').disabled = files.length === 0;
-  }
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('drag-over'); addFiles([...e.dataTransfer.files]); });
+fileInput.addEventListener('change', () => addFiles([...fileInput.files]));
 
-  function removeFile(id) {
-    files = files.filter(f => f.id !== id);
-    renderFileList();
-    document.getElementById('btnProcess').disabled = files.length === 0;
-  }
+function addFiles(newFiles) {
+  newFiles.forEach(f => { if (!files.find(x => x.name === f.name)) files.push({ file: f, status: 'pending', id: Date.now() + Math.random() }); });
+  renderFileList();
+  document.getElementById('btnProcess').disabled = files.length === 0;
+}
 
-  function renderFileList() {
-    const list = document.getElementById('fileList');
-    list.innerHTML = '';
-    files.forEach(f => {
-      const ext = f.file.name.split('.').pop().toUpperCase();
-      const icons = { PDF:'📄', PNG:'🖼️', JPG:'🖼️', JPEG:'🖼️', XLSX:'📊', CSV:'📊' };
-      const icon = icons[ext] || '📎';
-      const sc = f.status === 'done' ? 'done' : f.status === 'processing' ? 'processing' : f.status === 'error' ? 'error' : '';
-      const sl = f.status === 'done' ? '<span class="file-status ok">✓ Processado pelo Léo</span>' :
-                 f.status === 'processing' ? '<span class="file-status">Léo está lendo...</span>' :
-                 f.status === 'error' ? '<span class="file-status err">Erro ao processar</span>' :
-                 '<span class="file-status">Aguardando</span>';
-      list.innerHTML += `<div class="file-item ${sc}"><span class="file-icon">${icon}</span><div class="file-info"><div class="file-name">${f.file.name}</div>${sl}<div class="file-status">${(f.file.size/1024).toFixed(0)} KB · ${ext}</div></div><button class="file-remove" onclick="removeFile(${f.id})">✕</button></div>`;
-    });
-  }
+function removeFile(id) {
+  files = files.filter(f => f.id !== id);
+  renderFileList();
+  document.getElementById('btnProcess').disabled = files.length === 0;
+}
 
-  function fileToBase64(file) {
-    return new Promise((res, rej) => {
-      const r = new FileReader();
-      r.onload = () => res(r.result.split(',')[1]);
-      r.onerror = rej;
-      r.readAsDataURL(file);
-    });
-  }
+function renderFileList() {
+  const list = document.getElementById('fileList');
+  list.innerHTML = '';
+  files.forEach(f => {
+    const ext = f.file.name.split('.').pop().toUpperCase();
+    const icons = { PDF: '📄', PNG: '🖼️', JPG: '🖼️', JPEG: '🖼️', XLSX: '📊', CSV: '📊' };
+    const icon = icons[ext] || '📎';
+    const sc = f.status === 'done' ? 'done' : f.status === 'processing' ? 'processing' : f.status === 'error' ? 'error' : '';
+    const sl = f.status === 'done' ? '<span class="file-status ok">✓ Processado pelo Léo</span>' :
+               f.status === 'processing' ? '<span class="file-status">Léo está lendo...</span>' :
+               f.status === 'error' ? '<span class="file-status err">Erro</span>' :
+               '<span class="file-status">Aguardando</span>';
+    list.innerHTML += `
+      <div class="file-item ${sc}">
+        <span class="file-icon">${icon}</span>
+        <div class="file-info">
+          <div class="file-name">${f.file.name}</div>
+          ${sl}
+          <div class="file-status">${(f.file.size/1024).toFixed(0)} KB · ${ext}</div>
+        </div>
+        <button class="file-remove" onclick="removeFile(${f.id})">✕</button>
+      </div>`;
+  });
+}
 
-  async function processDocuments() {
-    if (isProcessing || files.length === 0) return;
-    isProcessing = true;
-    document.getElementById('welcomeState').style.display = 'none';
-    document.getElementById('loadingState').style.display = 'flex';
-    document.getElementById('reportContent').style.display = 'none';
-    document.getElementById('btnProcess').disabled = true;
-    document.getElementById('btnIcon').innerHTML = '<div class="spinner"></div>';
-    document.getElementById('btnLabel').textContent = 'Léo está trabalhando...';
+function fileToBase64(file) {
+  return new Promise((res, rej) => {
+    const r = new FileReader();
+    r.onload = () => res(r.result.split(',')[1]);
+    r.onerror = rej;
+    r.readAsDataURL(file);
+  });
+}
 
-    const steps = ['step1','step2','step3','step4','step5'];
-    let si = 0;
-    const stepInt = setInterval(() => {
-      if (si > 0) { document.getElementById(steps[si-1]).classList.remove('active'); document.getElementById(steps[si-1]).classList.add('complete'); }
-      if (si < steps.length) document.getElementById(steps[si]).classList.add('active');
-      si++;
-      if (si > steps.length) clearInterval(stepInt);
-    }, 2000);
+// ==================== PROCESS ====================
+async function processDocuments() {
+  if (isProcessing || files.length === 0) return;
+  isProcessing = true;
 
-    files.forEach(f => { f.status = 'processing'; });
-    renderFileList();
+  document.getElementById('welcomeState').style.display = 'none';
+  document.getElementById('loadingState').style.display = 'flex';
+  document.getElementById('reportContent').style.display = 'none';
+  document.getElementById('btnProcess').disabled = true;
+  document.getElementById('btnIcon').textContent = '';
+  document.getElementById('btnLabel').textContent = 'Léo está trabalhando...';
 
-    try {
-      const contentParts = [];
-      for (const f of files) {
-        const b64 = await fileToBase64(f.file);
-        const ext = f.file.name.split('.').pop().toLowerCase();
-        if (ext === 'pdf') {
-          contentParts.push({ type: 'document', source: { type: 'base64', media_type: 'application/pdf', data: b64 }, title: f.file.name });
-        } else if (['png','jpg','jpeg'].includes(ext)) {
-          contentParts.push({ type: 'image', source: { type: 'base64', media_type: ext === 'png' ? 'image/png' : 'image/jpeg', data: b64 } });
-        }
+  const steps = ['step1','step2','step3','step4','step5'];
+  let si = 0;
+  const stepInt = setInterval(() => {
+    if (si > 0) { document.getElementById(steps[si-1]).classList.remove('active'); document.getElementById(steps[si-1]).classList.add('complete'); }
+    if (si < steps.length) document.getElementById(steps[si]).classList.add('active');
+    si++;
+    if (si > steps.length) clearInterval(stepInt);
+  }, 2000);
+
+  files.forEach(f => { f.status = 'processing'; });
+  renderFileList();
+
+  try {
+    const contentParts = [];
+    for (const f of files) {
+      const b64 = await fileToBase64(f.file);
+      const ext = f.file.name.split('.').pop().toLowerCase();
+      if (ext === 'pdf') {
+        contentParts.push({ type: 'document', source: { type: 'base64', media_type: 'application/pdf', data: b64 }, title: f.file.name });
+      } else if (['png','jpg','jpeg'].includes(ext)) {
+        contentParts.push({ type: 'image', source: { type: 'base64', media_type: ext === 'png' ? 'image/png' : 'image/jpeg', data: b64 } });
       }
+    }
 
-      contentParts.push({ type: 'text', text: `Você é o Léo, assistente especialista em Imposto de Renda no Brasil (DIRPF), parte da plataforma LEÃO. Analise todos os documentos enviados e extraia TODAS as informações para preencher a declaração IRPF 2025 (ano-calendário 2024). Retorne APENAS JSON válido, sem markdown ou texto fora do JSON: {"identificacao":{"nome":"","cpf":"","dataNascimento":"","tituloEleitoral":"","ocupacao":"","naturezaOcupacao":"","enderecoCompleto":""},"rendimentosTributaveis":{"totalRendimentos":0,"contribuicaoPrevidenciaria":0,"impostoRetidoFonte":0,"decimoTerceiro":0,"impostoRetidoDecimoTerceiro":0,"fontes":[{"nomeFonte":"","cnpj":"","rendimentos":0,"irrf":0,"previdencia":0}]},"rendimentosIsentos":{"total":0,"itens":[{"codigo":"","descricao":"","valor":0,"fonte":""}]},"rendimentosExclusivos":{"total":0,"itens":[{"tipo":"","valor":0,"irrf":0,"fonte":""}]},"deducoes":{"dependentes":[],"saude":0,"educacao":0,"previdenciaOficial":0,"previdenciaPrivada":0,"pensaoAlimenticia":0,"totalDeducoes":0,"detalhes":[{"codigo":"","beneficiario":"","cpf":"","valor":0}]},"bensEDireitos":[{"grupo":"","codigo":"","discriminacao":"","situacao2023":0,"situacao2024":0,"cnpj":""}],"dividasOnus":[{"codigo":"","discriminacao":"","credor":"","cnpj":"","valor2023":0,"valor2024":0}],"rendaVariavel":{"acoes":{"resultadoMercadoVista":0,"resultadoMercadoOpcoes":0,"resultadoFII":0,"impostosPagos":0},"operacoes":[{"ativo":"","tipo":"","resultado":0,"darf":0}]},"resumo":{"baseCalculoIR":0,"impostoDue":0,"impostoRetidoFonte":0,"saldoImposto":0,"statusDeclaracao":""},"alertas":[{"tipo":"atencao","mensagem":""}],"observacoes":""}` });
+    contentParts.push({ type: 'text', text: `Você é o Léo, assistente especialista em Imposto de Renda no Brasil (DIRPF), parte da plataforma LEÃO.
+Analise todos os documentos enviados (kit IR, informes de rendimentos, extratos, notas de corretagem, DARFs etc.) e extraia TODAS as informações para preencher a declaração IRPF 2025 (ano-calendário 2024).
 
-      // Chama o SEU servidor (que repassa para a Anthropic)
-      const resp = await fetch(`${API_URL}/api/analyze`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: [{ role: 'user', content: contentParts }], max_tokens: 4000 })
-      });
+Retorne APENAS JSON válido, sem markdown ou texto fora do JSON:
+{
+  "identificacao": { "nome":"","cpf":"","dataNascimento":"","tituloEleitoral":"","ocupacao":"","naturezaOcupacao":"","enderecoCompleto":"" },
+  "rendimentosTributaveis": { "totalRendimentos":0,"contribuicaoPrevidenciaria":0,"impostoRetidoFonte":0,"decimoTerceiro":0,"impostoRetidoDecimoTerceiro":0,"fontes":[{"nomeFonte":"","cnpj":"","rendimentos":0,"irrf":0,"previdencia":0}] },
+  "rendimentosIsentos": { "total":0,"itens":[{"codigo":"","descricao":"","valor":0,"fonte":""}] },
+  "rendimentosExclusivos": { "total":0,"itens":[{"tipo":"","valor":0,"irrf":0,"fonte":""}] },
+  "deducoes": { "dependentes":[],"saude":0,"educacao":0,"previdenciaOficial":0,"previdenciaPrivada":0,"pensaoAlimenticia":0,"totalDeducoes":0,"detalhes":[{"codigo":"","beneficiario":"","cpf":"","valor":0}] },
+  "bensEDireitos": [{"grupo":"","codigo":"","discriminacao":"","situacao2023":0,"situacao2024":0,"cnpj":""}],
+  "dividasOnus": [{"codigo":"","discriminacao":"","credor":"","cnpj":"","valor2023":0,"valor2024":0}],
+  "rendaVariavel": { "acoes":{"resultadoMercadoVista":0,"resultadoMercadoOpcoes":0,"resultadoFII":0,"impostosPagos":0},"operacoes":[{"ativo":"","tipo":"","resultado":0,"darf":0}] },
+  "resumo": { "baseCalculoIR":0,"impostoDue":0,"impostoRetidoFonte":0,"saldoImposto":0,"statusDeclaracao":"" },
+  "alertas": [{"tipo":"atencao|erro|info","mensagem":""}],
+  "fontesIdentificadas": [],
+  "observacoes": ""
+}` });
 
-      clearInterval(stepInt);
-      steps.forEach(s => { document.getElementById(s).classList.remove('active'); document.getElementById(s).classList.add('complete'); });
+    // Monta payload para o backend
+    const payload = { files: [] };
+    for (const part of contentParts) {
+      if (part.type === 'document') {
+        payload.files.push({ type: 'pdf', name: part.title, data: part.source.data });
+      } else if (part.type === 'image') {
+        payload.files.push({ type: 'image', mediaType: part.source.media_type, data: part.source.data });
+      }
+    }
 
-      const data = await resp.json();
-      if (!resp.ok) throw new Error(data.error || 'Erro no servidor');
+    const resp = await fetch(`${API_URL}/analisar`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
 
-      const raw = data.content?.map(c => c.text || '').join('');
-      let parsed;
-      try { parsed = JSON.parse(raw.replace(/```json|```/g, '').trim()); }
-      catch(e) { parsed = { observacoes: raw, alertas: [{tipo:'info',mensagem:'Documentos processados pelo Léo.'}] }; }
+    clearInterval(stepInt);
+    steps.forEach(s => { document.getElementById(s).classList.remove('active'); document.getElementById(s).classList.add('complete'); });
 
-      reportData = parsed;
-      files.forEach(f => { f.status = 'done'; });
-      renderFileList();
-      chatHistory.push({ role: 'user', content: `Léo analisou os documentos de IR. Resumo: ${JSON.stringify(parsed).substring(0,2000)}` });
+    const data = await resp.json();
+    let parsed;
+    if (data.success) { parsed = data.data; }
+    else { parsed = { observacoes: data.error || 'Erro no servidor.', alertas: [{tipo:'erro',mensagem: data.error || 'Erro ao processar.'}] }; }
 
-      setTimeout(() => {
-        document.getElementById('loadingState').style.display = 'none';
-        document.getElementById('reportContent').style.display = 'block';
-        renderReport(parsed);
-        showFicha(currentFicha);
-        appendMsg('ai', '✅ Pronto! Analisei todos os seus documentos e preenchi as fichas. Clique em cada ficha no menu para conferir. Alguma dúvida?');
-      }, 600);
+    reportData = parsed;
+    files.forEach(f => { f.status = 'done'; });
+    renderFileList();
 
-    } catch(err) {
-      clearInterval(stepInt);
-      files.forEach(f => { f.status = 'error'; });
-      renderFileList();
+    chatHistory.push({ role: 'user', content: `Léo analisou os documentos de IR. Resumo: ${JSON.stringify(parsed).substring(0,2000)}` });
+
+    setTimeout(() => {
       document.getElementById('loadingState').style.display = 'none';
-      document.getElementById('welcomeState').style.display = 'flex';
-      appendMsg('ai', `⚠️ Erro: ${err.message}. Verifique se o servidor está rodando e tente novamente.`);
-    }
+      document.getElementById('reportContent').style.display = 'block';
+      renderReport(parsed);
+      showFicha(currentFicha);
 
-    isProcessing = false;
-    document.getElementById('btnProcess').disabled = false;
-    document.getElementById('btnIcon').textContent = '🦁';
-    document.getElementById('btnLabel').textContent = 'Re-analisar com o Léo';
+      appendMsg('ai', '✅ Pronto! Analisei todos os seus documentos e preenchi as fichas da declaração. Clique em cada ficha no menu lateral para conferir os valores. Tem alguma dúvida sobre os dados que encontrei?');
+    }, 600);
+
+  } catch(err) {
+    clearInterval(stepInt);
+    files.forEach(f => { f.status = 'error'; });
+    renderFileList();
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('welcomeState').style.display = 'flex';
+    appendMsg('ai', '⚠️ Tive um problema ao processar os documentos. Verifique se os arquivos estão legíveis e tente novamente.');
   }
 
-  function fmt(val) {
-    const n = parseFloat(val);
-    if (!val && val !== 0 || isNaN(n)) return '—';
-    return 'R$ ' + n.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  isProcessing = false;
+  document.getElementById('btnProcess').disabled = false;
+  document.getElementById('btnIcon').textContent = '🦁';
+  document.getElementById('btnLabel').textContent = 'Re-analisar com o Léo';
+}
+
+// ==================== REPORT ====================
+function fmt(val) {
+  const n = parseFloat(val);
+  if (!val && val !== 0 || isNaN(n)) return '—';
+  return 'R$ ' + n.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function field(label, code, value, forceCls) {
+  let displayVal, cls;
+  if (value === null || value === undefined || value === '') { displayVal = 'Não informado'; cls = 'empty'; }
+  else if (typeof value === 'number') {
+    displayVal = fmt(value);
+    cls = forceCls || (value > 0 ? 'positive' : value < 0 ? 'negative' : '');
+  } else { displayVal = String(value); cls = forceCls || ''; }
+
+  return `
+    <div class="field-item ${['positive','negative'].includes(cls) ? 'highlighted' : ''}">
+      ${code ? `<div class="field-code">${code}</div>` : ''}
+      <div class="field-label">${label}</div>
+      <div class="field-value ${cls}">${displayVal}</div>
+    </div>`;
+}
+
+function secHead(id, icon, title, subtitle, tagCls, tagLabel, bg) {
+  return `<div class="report-section" id="sec-${id}">
+    <div class="report-header">
+      <div class="report-header-icon" style="background:${bg}">${icon}</div>
+      <div>
+        <div class="report-title">${title}${tagLabel?`<span class="section-tag ${tagCls}">${tagLabel}</span>`:''}</div>
+        ${subtitle?`<div class="report-subtitle">${subtitle}</div>`:''}
+      </div>
+    </div>`;
+}
+
+function renderReport(d) {
+  const rc = document.getElementById('reportContent');
+  rc.innerHTML = '';
+
+  const res = d.resumo || {};
+  const rend = d.rendimentosTributaveis || {};
+  const saldo = res.saldoImposto || 0;
+  const saldoClass = saldo > 0 ? 'neg' : saldo < 0 ? 'pos' : 'neu';
+  const saldoLabel = saldo > 0 ? fmt(saldo) + ' A PAGAR' : saldo < 0 ? fmt(Math.abs(saldo)) + ' A RESTITUIR' : 'EQUILIBRADO';
+
+  rc.innerHTML += `
+    <div class="summary-bar">
+      <div class="summary-item"><span class="summary-label">Rend. Tributáveis</span><span class="summary-val">${fmt(rend.totalRendimentos||0)}</span></div>
+      <div class="summary-div"></div>
+      <div class="summary-item"><span class="summary-label">Rend. Isentos</span><span class="summary-val pos">${fmt(d.rendimentosIsentos?.total||0)}</span></div>
+      <div class="summary-div"></div>
+      <div class="summary-item"><span class="summary-label">Deduções</span><span class="summary-val neu">${fmt(d.deducoes?.totalDeducoes||0)}</span></div>
+      <div class="summary-div"></div>
+      <div class="summary-item"><span class="summary-label">IRRF Retido</span><span class="summary-val">${fmt(rend.impostoRetidoFonte||0)}</span></div>
+      <div class="summary-div"></div>
+      <div class="summary-item"><span class="summary-label">Resultado Final</span><span class="summary-val ${saldoClass}">${saldoLabel}</span></div>
+      <button class="btn-export" onclick="exportReport()">⬇ Exportar</button>
+    </div>`;
+
+  if (d.alertas?.length) {
+    const alertHtml = d.alertas.map(a => {
+      const icons = { atencao:'⚠️', erro:'🔴', info:'ℹ️' };
+      const cls = a.tipo === 'erro' ? 'danger' : a.tipo === 'info' ? 'info' : '';
+      return `<div class="alert-box ${cls}">${icons[a.tipo]||'⚠️'} ${a.mensagem}</div>`;
+    }).join('');
+    rc.innerHTML += `<div id="sec-alertas" style="display:none;padding:20px 28px 0;">${alertHtml}</div>`;
   }
 
-  function renderReport(d) {
-    const rc = document.getElementById('reportContent');
-    rc.innerHTML = '';
-    const res = d.resumo || {}, rend = d.rendimentosTributaveis || {};
-    const saldo = res.saldoImposto || 0;
-    const saldoClass = saldo > 0 ? 'neg' : saldo < 0 ? 'pos' : 'neu';
-    const saldoLabel = saldo > 0 ? fmt(saldo) + ' A PAGAR' : saldo < 0 ? fmt(Math.abs(saldo)) + ' A RESTITUIR' : 'EQUILIBRADO';
+  // FICHAS
+  const id = d.identificacao || {};
+  rc.innerHTML += secHead('identificacao','👤','Identificação do Contribuinte','Ficha 1 — Dados pessoais','','','rgba(0,39,118,0.08)') + `
+    <div class="field-grid">
+      ${field('Nome Completo','',id.nome||'')}
+      ${field('CPF','',id.cpf||'')}
+      ${field('Data de Nascimento','',id.dataNascimento||'')}
+      ${field('Título de Eleitor','',id.tituloEleitoral||'')}
+      ${field('Ocupação Principal','',id.ocupacao||'')}
+      ${field('Natureza da Ocupação','',id.naturezaOcupacao||'')}
+    </div>
+    ${id.enderecoCompleto?`<div class="field-item" style="margin-top:10px;"><div class="field-label">Endereço</div><div style="font-size:14px;color:var(--text);margin-top:6px;font-weight:600;">${id.enderecoCompleto}</div></div>`:''}
+  </div>`;
 
-    rc.innerHTML += `<div class="summary-bar"><div class="summary-item"><span class="summary-label">Rend. Tributáveis</span><span class="summary-val">${fmt(rend.totalRendimentos||0)}</span></div><div class="summary-div"></div><div class="summary-item"><span class="summary-label">Rend. Isentos</span><span class="summary-val pos">${fmt(d.rendimentosIsentos?.total||0)}</span></div><div class="summary-div"></div><div class="summary-item"><span class="summary-label">Deduções</span><span class="summary-val neu">${fmt(d.deducoes?.totalDeducoes||0)}</span></div><div class="summary-div"></div><div class="summary-item"><span class="summary-label">IRRF Retido</span><span class="summary-val">${fmt(rend.impostoRetidoFonte||0)}</span></div><div class="summary-div"></div><div class="summary-item"><span class="summary-label">Resultado Final</span><span class="summary-val ${saldoClass}">${saldoLabel}</span></div><button class="btn-export" onclick="exportReport()">⬇ Exportar</button></div>`;
+  const rt = d.rendimentosTributaveis || {};
+  let tabelaFontes = '';
+  if (rt.fontes?.length) {
+    tabelaFontes = `<div class="field-item" style="padding:0;overflow:hidden;margin-top:10px;grid-column:1/-1;">
+      <table class="report-table">
+        <thead><tr><th>Fonte Pagadora</th><th>CNPJ</th><th>Rendimentos</th><th>IRRF</th><th>Previdência</th></tr></thead>
+        <tbody>${rt.fontes.map(f=>`<tr><td>${f.nomeFonte||'—'}</td><td style="font-family:monospace;font-size:12px;">${f.cnpj||'—'}</td><td class="td-value td-pos">${fmt(f.rendimentos)}</td><td class="td-value">${fmt(f.irrf)}</td><td class="td-value">${fmt(f.previdencia)}</td></tr>`).join('')}</tbody>
+      </table></div>`;
+  }
+  rc.innerHTML += secHead('rendimentos-trib','💼','Rendimentos Tributáveis','Ficha 2 — Rendimentos de PJ e PF','tag-trib','Tributável','rgba(0,156,59,0.1)') + `
+    <div class="field-grid cols-3">
+      <div class="field-item highlighted"><div class="field-code">Campo 01</div><div class="field-label">Total de Rendimentos</div><div class="field-value positive">${fmt(rt.totalRendimentos)}</div></div>
+      <div class="field-item"><div class="field-code">Campo 05</div><div class="field-label">Previdência Social</div><div class="field-value neutral">${fmt(rt.contribuicaoPrevidenciaria)}</div></div>
+      <div class="field-item"><div class="field-code">Campo 06</div><div class="field-label">IR Retido na Fonte</div><div class="field-value">${fmt(rt.impostoRetidoFonte)}</div></div>
+      <div class="field-item"><div class="field-code">Campo 09</div><div class="field-label">13º Salário</div><div class="field-value">${fmt(rt.decimoTerceiro)}</div></div>
+      <div class="field-item"><div class="field-code">Campo 10</div><div class="field-label">IRRF sobre 13º</div><div class="field-value">${fmt(rt.impostoRetidoDecimoTerceiro)}</div></div>
+    </div>
+    ${tabelaFontes}</div>`;
 
-    if (d.alertas?.length) {
-      rc.innerHTML += `<div id="sec-alertas" style="display:none;padding:20px 28px 0;">${d.alertas.map(a => `<div class="alert-box ${a.tipo==='erro'?'danger':a.tipo==='info'?'info':''}">${a.tipo==='atencao'?'⚠️':a.tipo==='erro'?'🔴':'ℹ️'} ${a.mensagem}</div>`).join('')}</div>`;
-    }
+  const ri = d.rendimentosIsentos || {};
+  let tabelaIsentos = '';
+  if (ri.itens?.length) tabelaIsentos = `<div class="field-item" style="padding:0;overflow:hidden;margin-top:10px;grid-column:1/-1;"><table class="report-table"><thead><tr><th>Código</th><th>Descrição</th><th>Valor</th><th>Fonte</th></tr></thead><tbody>${ri.itens.map(i=>`<tr><td style="font-family:monospace;font-weight:700;">${i.codigo||'—'}</td><td>${i.descricao||'—'}</td><td class="td-value td-pos">${fmt(i.valor)}</td><td>${i.fonte||'—'}</td></tr>`).join('')}</tbody></table></div>`;
+  rc.innerHTML += secHead('rendimentos-isentos','🎁','Rendimentos Isentos e Não Tributáveis','Dividendos, FGTS, indenizações, lucros distribuídos','tag-isento','Isento','rgba(0,39,118,0.06)') + `
+    <div class="field-grid"><div class="field-item highlighted"><div class="field-label">Total Rendimentos Isentos</div><div class="field-value positive">${fmt(ri.total)}</div><div class="field-source">Não compõe base de cálculo do IR</div></div></div>
+    ${tabelaIsentos}</div>`;
 
-    // Fichas simplificadas
-    const id = d.identificacao || {};
-    rc.innerHTML += `<div class="report-section" id="sec-identificacao"><div class="report-header"><div class="report-header-icon" style="background:rgba(0,39,118,0.08)">👤</div><div><div class="report-title">Identificação do Contribuinte</div></div></div><div class="field-grid"><div class="field-item"><div class="field-label">Nome</div><div class="field-value ${!id.nome?'empty':''}">${id.nome||'Não informado'}</div></div><div class="field-item"><div class="field-label">CPF</div><div class="field-value ${!id.cpf?'empty':''}">${id.cpf||'Não informado'}</div></div><div class="field-item"><div class="field-label">Data de Nascimento</div><div class="field-value ${!id.dataNascimento?'empty':''}">${id.dataNascimento||'Não informado'}</div></div><div class="field-item"><div class="field-label">Ocupação</div><div class="field-value ${!id.ocupacao?'empty':''}">${id.ocupacao||'Não informado'}</div></div></div></div>`;
+  const rex = d.rendimentosExclusivos || {};
+  let tabelaExcl = '';
+  if (rex.itens?.length) tabelaExcl = `<div class="field-item" style="padding:0;overflow:hidden;margin-top:10px;grid-column:1/-1;"><table class="report-table"><thead><tr><th>Tipo</th><th>Valor</th><th>IRRF</th><th>Fonte</th></tr></thead><tbody>${rex.itens.map(i=>`<tr><td>${i.tipo||'—'}</td><td class="td-value">${fmt(i.valor)}</td><td class="td-value">${fmt(i.irrf)}</td><td>${i.fonte||'—'}</td></tr>`).join('')}</tbody></table></div>`;
+  rc.innerHTML += secHead('rendimentos-exclusivos','🔒','Tributação Exclusiva / Definitiva','Aplicações financeiras, JCP, prêmios','tag-isento','Exclusivo','rgba(0,39,118,0.04)') + `
+    <div class="field-grid"><div class="field-item"><div class="field-label">Total Tributação Exclusiva</div><div class="field-value">${fmt(rex.total)}</div></div></div>
+    ${tabelaExcl}</div>`;
 
-    const rt = d.rendimentosTributaveis || {};
-    rc.innerHTML += `<div class="report-section" id="sec-rendimentos-trib"><div class="report-header"><div class="report-header-icon" style="background:rgba(0,156,59,0.1)">💼</div><div><div class="report-title">Rendimentos Tributáveis <span class="section-tag tag-trib">Tributável</span></div></div></div><div class="field-grid cols-3"><div class="field-item highlighted"><div class="field-code">Campo 01</div><div class="field-label">Total de Rendimentos</div><div class="field-value positive">${fmt(rt.totalRendimentos)}</div></div><div class="field-item"><div class="field-code">Campo 05</div><div class="field-label">Previdência Social</div><div class="field-value neutral">${fmt(rt.contribuicaoPrevidenciaria)}</div></div><div class="field-item"><div class="field-code">Campo 06</div><div class="field-label">IR Retido na Fonte</div><div class="field-value">${fmt(rt.impostoRetidoFonte)}</div></div><div class="field-item"><div class="field-code">Campo 09</div><div class="field-label">13º Salário</div><div class="field-value">${fmt(rt.decimoTerceiro)}</div></div><div class="field-item"><div class="field-code">Campo 10</div><div class="field-label">IRRF sobre 13º</div><div class="field-value">${fmt(rt.impostoRetidoDecimoTerceiro)}</div></div></div>${rt.fontes?.length?`<div class="field-item" style="padding:0;overflow:hidden;margin-top:10px;"><table class="report-table"><thead><tr><th>Fonte Pagadora</th><th>CNPJ</th><th>Rendimentos</th><th>IRRF</th></tr></thead><tbody>${rt.fontes.map(f=>`<tr><td>${f.nomeFonte||'—'}</td><td style="font-family:monospace">${f.cnpj||'—'}</td><td class="td-value td-pos">${fmt(f.rendimentos)}</td><td class="td-value">${fmt(f.irrf)}</td></tr>`).join('')}</tbody></table></div>`:''}</div>`;
+  const ded = d.deducoes || {};
+  let tabelaDed = '';
+  if (ded.detalhes?.length) tabelaDed = `<div class="field-item" style="padding:0;overflow:hidden;margin-top:10px;grid-column:1/-1;"><table class="report-table"><thead><tr><th>Código</th><th>Beneficiário</th><th>CPF/CNPJ</th><th>Valor</th></tr></thead><tbody>${ded.detalhes.map(i=>`<tr><td style="font-family:monospace;font-weight:700;">${i.codigo||'—'}</td><td>${i.beneficiario||'—'}</td><td style="font-family:monospace;font-size:12px;">${i.cpf||'—'}</td><td class="td-value td-neg">-${fmt(Math.abs(i.valor))}</td></tr>`).join('')}</tbody></table></div>`;
+  rc.innerHTML += secHead('deducoes','🏥','Pagamentos Efetuados e Deduções','Saúde, educação, INSS, PGBL, dependentes','tag-deduc','Dedução','rgba(255,223,0,0.08)') + `
+    <div class="field-grid cols-3">
+      <div class="field-item"><div class="field-label">Saúde / Médico</div><div class="field-value neutral">${fmt(ded.saude)}</div></div>
+      <div class="field-item"><div class="field-label">Educação</div><div class="field-value neutral">${fmt(ded.educacao)}</div></div>
+      <div class="field-item"><div class="field-label">INSS</div><div class="field-value neutral">${fmt(ded.previdenciaOficial)}</div></div>
+      <div class="field-item"><div class="field-label">PGBL</div><div class="field-value neutral">${fmt(ded.previdenciaPrivada)}</div></div>
+      <div class="field-item"><div class="field-label">Pensão Alimentícia</div><div class="field-value neutral">${fmt(ded.pensaoAlimenticia)}</div></div>
+      <div class="field-item highlighted"><div class="field-label">Total Deduções</div><div class="field-value neutral">${fmt(ded.totalDeducoes)}</div></div>
+    </div>
+    ${tabelaDed}
+    ${ded.dependentes?.length?`<div class="alert-box info" style="margin-top:10px;">👤 ${ded.dependentes.length} dependente(s) identificado(s)</div>`:''}
+  </div>`;
 
-    const ri = d.rendimentosIsentos || {};
-    rc.innerHTML += `<div class="report-section" id="sec-rendimentos-isentos"><div class="report-header"><div class="report-header-icon" style="background:rgba(0,39,118,0.06)">🎁</div><div><div class="report-title">Rendimentos Isentos <span class="section-tag tag-isento">Isento</span></div></div></div><div class="field-grid"><div class="field-item highlighted"><div class="field-label">Total Rendimentos Isentos</div><div class="field-value positive">${fmt(ri.total)}</div></div></div>${ri.itens?.length?`<div class="field-item" style="padding:0;overflow:hidden;margin-top:10px;"><table class="report-table"><thead><tr><th>Código</th><th>Descrição</th><th>Valor</th><th>Fonte</th></tr></thead><tbody>${ri.itens.map(i=>`<tr><td style="font-family:monospace">${i.codigo||'—'}</td><td>${i.descricao||'—'}</td><td class="td-value td-pos">${fmt(i.valor)}</td><td>${i.fonte||'—'}</td></tr>`).join('')}</tbody></table></div>`:''}</div>`;
+  const bens = d.bensEDireitos || [];
+  let tabelaBens = bens.length ? `<div class="field-item" style="padding:0;overflow:hidden;grid-column:1/-1;"><table class="report-table"><thead><tr><th>Grupo/Cód</th><th>Discriminação</th><th>Sit. 31/12/2023</th><th>Sit. 31/12/2024</th></tr></thead><tbody>${bens.map(b=>`<tr><td style="font-family:monospace;font-weight:700;">${b.grupo||''}/${b.codigo||'—'}</td><td>${b.discriminacao||'—'}</td><td class="td-value">${fmt(b.situacao2023)}</td><td class="td-value td-pos">${fmt(b.situacao2024)}</td></tr>`).join('')}</tbody></table></div>` : '<div class="field-item"><div class="field-value empty">Nenhum bem identificado</div></div>';
+  rc.innerHTML += secHead('bens','🏠','Bens e Direitos','Imóveis, veículos, ações, aplicações, participações','tag-pat','Patrimônio','rgba(0,39,118,0.06)') + `<div class="field-grid">${tabelaBens}</div></div>`;
 
-    const ded = d.deducoes || {};
-    rc.innerHTML += `<div class="report-section" id="sec-deducoes"><div class="report-header"><div class="report-header-icon" style="background:rgba(255,223,0,0.08)">🏥</div><div><div class="report-title">Pagamentos e Deduções <span class="section-tag tag-deduc">Dedução</span></div></div></div><div class="field-grid cols-3"><div class="field-item"><div class="field-label">Saúde</div><div class="field-value neutral">${fmt(ded.saude)}</div></div><div class="field-item"><div class="field-label">Educação</div><div class="field-value neutral">${fmt(ded.educacao)}</div></div><div class="field-item"><div class="field-label">INSS</div><div class="field-value neutral">${fmt(ded.previdenciaOficial)}</div></div><div class="field-item"><div class="field-label">PGBL</div><div class="field-value neutral">${fmt(ded.previdenciaPrivada)}</div></div><div class="field-item"><div class="field-label">Pensão Alimentícia</div><div class="field-value neutral">${fmt(ded.pensaoAlimenticia)}</div></div><div class="field-item highlighted"><div class="field-label">Total Deduções</div><div class="field-value neutral">${fmt(ded.totalDeducoes)}</div></div></div></div>`;
+  const div = d.dividasOnus || [];
+  let tabelaDiv = div.length ? `<div class="field-item" style="padding:0;overflow:hidden;grid-column:1/-1;"><table class="report-table"><thead><tr><th>Código</th><th>Discriminação</th><th>Credor</th><th>2023</th><th>2024</th></tr></thead><tbody>${div.map(x=>`<tr><td style="font-family:monospace;font-weight:700;">${x.codigo||'—'}</td><td>${x.discriminacao||'—'}</td><td>${x.credor||'—'}</td><td class="td-value">${fmt(x.valor2023)}</td><td class="td-value td-neg">${fmt(x.valor2024)}</td></tr>`).join('')}</tbody></table></div>` : '<div class="field-item"><div class="field-value empty">Nenhuma dívida identificada</div></div>';
+  rc.innerHTML += secHead('dividas','💳','Dívidas e Ônus Reais','Financiamentos, empréstimos, obrigações','tag-alerta','Passivo','rgba(204,34,0,0.05)') + `<div class="field-grid">${tabelaDiv}</div></div>`;
 
-    const bens = d.bensEDireitos || [];
-    rc.innerHTML += `<div class="report-section" id="sec-bens"><div class="report-header"><div class="report-header-icon" style="background:rgba(0,39,118,0.06)">🏠</div><div><div class="report-title">Bens e Direitos <span class="section-tag tag-pat">Patrimônio</span></div></div></div>${bens.length?`<div class="field-item" style="padding:0;overflow:hidden;"><table class="report-table"><thead><tr><th>Grupo/Cód</th><th>Discriminação</th><th>Sit. 2023</th><th>Sit. 2024</th></tr></thead><tbody>${bens.map(b=>`<tr><td style="font-family:monospace">${b.grupo||''}/${b.codigo||'—'}</td><td>${b.discriminacao||'—'}</td><td class="td-value">${fmt(b.situacao2023)}</td><td class="td-value td-pos">${fmt(b.situacao2024)}</td></tr>`).join('')}</tbody></table></div>`:'<div class="field-item"><div class="field-value empty">Nenhum bem identificado</div></div>'}</div>`;
+  const rv = d.rendaVariavel || {};
+  const ac = rv.acoes || {};
+  let tabelaOps = '';
+  if (rv.operacoes?.length) tabelaOps = `<div class="field-item" style="padding:0;overflow:hidden;margin-top:10px;grid-column:1/-1;"><table class="report-table"><thead><tr><th>Ativo</th><th>Tipo</th><th>Resultado</th><th>DARF Pago</th></tr></thead><tbody>${rv.operacoes.map(o=>`<tr><td><strong>${o.ativo||'—'}</strong></td><td>${o.tipo||'—'}</td><td class="td-value ${o.resultado>=0?'td-pos':'td-neg'}">${fmt(o.resultado)}</td><td class="td-value">${fmt(o.darf)}</td></tr>`).join('')}</tbody></table></div>`;
+  rc.innerHTML += secHead('renda-variavel','📈','Renda Variável','Ações, FIIs, opções, futuros — resultados e DARFs','','','rgba(0,156,59,0.06)') + `
+    <div class="field-grid cols-2">
+      <div class="field-item ${ac.resultadoMercadoVista>=0?'highlighted':'danger'}"><div class="field-label">Resultado Mercado à Vista</div><div class="field-value ${ac.resultadoMercadoVista>=0?'positive':'negative'}">${fmt(ac.resultadoMercadoVista)}</div></div>
+      <div class="field-item"><div class="field-label">Resultado Opções</div><div class="field-value">${fmt(ac.resultadoMercadoOpcoes)}</div></div>
+      <div class="field-item"><div class="field-label">Resultado FIIs</div><div class="field-value positive">${fmt(ac.resultadoFII)}</div></div>
+      <div class="field-item warn"><div class="field-label">Impostos Pagos (DARFs)</div><div class="field-value neutral">${fmt(ac.impostosPagos)}</div></div>
+    </div>
+    ${tabelaOps}</div>`;
 
-    const rv = d.rendaVariavel || {}, ac = rv.acoes || {};
-    rc.innerHTML += `<div class="report-section" id="sec-renda-variavel"><div class="report-header"><div class="report-header-icon" style="background:rgba(0,156,59,0.06)">📈</div><div><div class="report-title">Renda Variável</div></div></div><div class="field-grid cols-2"><div class="field-item ${ac.resultadoMercadoVista>=0?'highlighted':'danger'}"><div class="field-label">Resultado Mercado à Vista</div><div class="field-value ${ac.resultadoMercadoVista>=0?'positive':'negative'}">${fmt(ac.resultadoMercadoVista)}</div></div><div class="field-item"><div class="field-label">Resultado Opções</div><div class="field-value">${fmt(ac.resultadoMercadoOpcoes)}</div></div><div class="field-item"><div class="field-label">Resultado FIIs</div><div class="field-value positive">${fmt(ac.resultadoFII)}</div></div><div class="field-item warn"><div class="field-label">DARFs Pagos</div><div class="field-value neutral">${fmt(ac.impostosPagos)}</div></div></div></div>`;
+  const rs = d.resumo || {};
+  const s = rs.saldoImposto || 0;
+  const sCls = s > 0 ? 'negative danger' : s < 0 ? 'positive highlighted' : 'warn';
+  const sDesc = s > 0 ? '⚠️ Imposto a Pagar' : s < 0 ? '✅ A Restituir' : '— Equilibrado';
+  rc.innerHTML += secHead('resumo','📊','Resumo e Cálculo do Imposto','Resultado final da sua declaração IRPF 2025','','','rgba(0,39,118,0.08)') + `
+    <div class="field-grid cols-3">
+      <div class="field-item"><div class="field-label">Base de Cálculo</div><div class="field-value">${fmt(rs.baseCalculoIR)}</div></div>
+      <div class="field-item"><div class="field-label">Imposto Devido</div><div class="field-value">${fmt(rs.impostoDue)}</div></div>
+      <div class="field-item"><div class="field-label">IRRF Total</div><div class="field-value">${fmt(rs.impostoRetidoFonte)}</div></div>
+    </div>
+    <div class="field-item ${sCls}" style="margin-top:12px;text-align:center;padding:24px;">
+      <div class="field-label" style="text-align:center;">${sDesc}</div>
+      <div class="field-value" style="font-size:36px;text-align:center;">${fmt(Math.abs(s))}</div>
+      ${rs.statusDeclaracao?`<div class="field-source" style="text-align:center;">${rs.statusDeclaracao}</div>`:''}
+    </div>
+    ${d.observacoes?`<div class="alert-box info" style="margin-top:12px;">📝 ${d.observacoes}</div>`:''}
+  </div>`;
+}
 
-    const rs = d.resumo || {}, s = rs.saldoImposto || 0;
-    rc.innerHTML += `<div class="report-section" id="sec-resumo"><div class="report-header"><div class="report-header-icon" style="background:rgba(0,39,118,0.08)">📊</div><div><div class="report-title">Resumo Final</div></div></div><div class="field-grid cols-3"><div class="field-item"><div class="field-label">Base de Cálculo</div><div class="field-value">${fmt(rs.baseCalculoIR)}</div></div><div class="field-item"><div class="field-label">Imposto Devido</div><div class="field-value">${fmt(rs.impostoDue)}</div></div><div class="field-item"><div class="field-label">IRRF Total</div><div class="field-value">${fmt(rs.impostoRetidoFonte)}</div></div></div><div class="field-item ${s>0?'danger':s<0?'highlighted':'warn'}" style="margin-top:12px;text-align:center;padding:24px;"><div class="field-label" style="text-align:center;">${s>0?'⚠️ Imposto a Pagar':s<0?'✅ A Restituir':'— Equilibrado'}</div><div class="field-value ${s>0?'negative':s<0?'positive':''}" style="font-size:36px;text-align:center;">${fmt(Math.abs(s))}</div></div>${d.observacoes?`<div class="alert-box info" style="margin-top:12px;">📝 ${d.observacoes}</div>`:''}</div>`;
+// ==================== FICHA NAV ====================
+function showFicha(name) {
+  currentFicha = name;
+  document.querySelectorAll('.ficha-btn').forEach(b => b.classList.remove('active'));
+  const btn = document.getElementById('btn-' + name);
+  if (btn) btn.classList.add('active');
+  if (!reportData) return;
+
+  document.querySelectorAll('.report-section').forEach(s => s.style.display = 'none');
+  const alerts = document.getElementById('sec-alertas');
+  if (alerts) alerts.style.display = 'none';
+
+  const map = {
+    'identificacao':'sec-identificacao','rendimentos-trib':'sec-rendimentos-trib',
+    'rendimentos-isentos':'sec-rendimentos-isentos','rendimentos-exclusivos':'sec-rendimentos-exclusivos',
+    'deducoes':'sec-deducoes','bens':'sec-bens','dividas':'sec-dividas',
+    'renda-variavel':'sec-renda-variavel','resumo':'sec-resumo'
+  };
+
+  const el = document.getElementById(map[name]);
+  if (el) { el.style.display = 'block'; el.scrollIntoView({ behavior:'smooth', block:'start' }); }
+  if (name === 'resumo' && alerts) alerts.style.display = 'block';
+}
+
+function exportReport() {
+  if (!reportData) return;
+  const blob = new Blob([JSON.stringify(reportData, null, 2)], { type:'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `LEAO_IR_${new Date().toISOString().split('T')[0]}.json`;
+  a.click();
+}
+
+// ==================== CHAT LEO ====================
+const LEO_SYSTEM = `Você é o Léo, assistente simpático e especialista em Imposto de Renda do Brasil (IRPF/DIRPF), parte da plataforma LEÃO. Responda sempre em português, de forma clara, amigável e objetiva. Use linguagem acessível mas precisa. Quando relevante, mencione campos da declaração, códigos de bens e rendimentos. Se o usuário parece estar com pressa ou ansioso com o prazo, seja encorajador. Responda de forma concisa mas completa. Nunca invente valores — se não souber, diga claramente.`;
+
+async function sendChat() {
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if (!text || isChatting) return;
+  input.value = '';
+  input.style.height = 'auto';
+  await askQuestion(text);
+}
+
+async function askQuestion(text) {
+  if (isChatting) return;
+  isChatting = true;
+
+  appendMsg('user', text);
+  const tid = 'typing-' + Date.now();
+  appendMsg('ai', '<div class="typing-dots"><span></span><span></span><span></span></div>', tid);
+
+  chatHistory.push({ role:'user', content:text });
+
+  try {
+    const resp = await fetch(`${API_URL}/chat`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        messages: chatHistory,
+        context: reportData ? JSON.stringify(reportData).substring(0, 1500) : null
+      })
+    });
+
+    const data = await resp.json();
+    const reply = data.success ? data.reply : 'Não consegui responder agora.';
+    document.getElementById(tid)?.remove();
+    appendMsg('ai', fmt_chat(reply));
+    chatHistory.push({ role:'assistant', content:reply });
+  } catch(e) {
+    document.getElementById(tid)?.remove();
+    appendMsg('ai', '⚠️ Tive um problema de conexão. Tente novamente em instantes!');
   }
 
-  function showFicha(name) {
-    currentFicha = name;
-    document.querySelectorAll('.ficha-btn').forEach(b => b.classList.remove('active'));
-    const btn = document.getElementById('btn-' + name);
-    if (btn) btn.classList.add('active');
-    if (!reportData) return;
-    document.querySelectorAll('.report-section').forEach(s => s.style.display = 'none');
-    const alerts = document.getElementById('sec-alertas');
-    if (alerts) alerts.style.display = 'none';
-    const map = { 'identificacao':'sec-identificacao','rendimentos-trib':'sec-rendimentos-trib','rendimentos-isentos':'sec-rendimentos-isentos','rendimentos-exclusivos':'sec-rendimentos-isentos','deducoes':'sec-deducoes','bens':'sec-bens','dividas':'sec-bens','renda-variavel':'sec-renda-variavel','resumo':'sec-resumo' };
-    const el = document.getElementById(map[name]);
-    if (el) { el.style.display = 'block'; el.scrollIntoView({ behavior:'smooth', block:'start' }); }
-    if (name === 'resumo' && alerts) alerts.style.display = 'block';
-  }
+  isChatting = false;
+}
 
-  function exportReport() {
-    if (!reportData) return;
-    const blob = new Blob([JSON.stringify(reportData, null, 2)], { type:'application/json' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = `LEAO_IR_${new Date().toISOString().split('T')[0]}.json`;
-    a.click();
-  }
+function fmt_chat(t) {
+  return t.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/`([^`]+)`/g,'<span class="highlight">$1</span>').replace(/\n/g,'<br>');
+}
 
-  // CHAT
-  const LEO_SYSTEM = `Você é o Léo, assistente simpático e especialista em Imposto de Renda do Brasil (IRPF/DIRPF), parte da plataforma LEÃO. Responda sempre em português, de forma clara, amigável e objetiva. Use linguagem acessível mas precisa. Seja conciso mas completo. Nunca invente valores.`;
+function appendMsg(role, content, id) {
+  const msgs = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = `msg ${role}`;
+  if (id) div.id = id;
+  const av = role === 'ai' ? '<div class="msg-avatar ai">🦁</div>' : '<div class="msg-avatar user">👤</div>';
+  div.innerHTML = `${av}<div class="msg-bubble">${content}</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
 
-  async function sendChat() {
-    const input = document.getElementById('chatInput');
-    const text = input.value.trim();
-    if (!text || isChatting) return;
-    input.value = '';
-    input.style.height = 'auto';
-    await askQuestion(text);
-  }
-
-  async function askQuestion(text) {
-    if (isChatting) return;
-    isChatting = true;
-    appendMsg('user', text);
-    const tid = 'typing-' + Date.now();
-    appendMsg('ai', '<div class="typing-dots"><span></span><span></span><span></span></div>', tid);
-    chatHistory.push({ role:'user', content: text });
-
-    try {
-      const msgs = [
-        { role:'user', content: LEO_SYSTEM },
-        { role:'assistant', content: 'Entendido! Sou o Léo e estou aqui para ajudar com o seu IR.' },
-        ...chatHistory
-      ];
-
-      const resp = await fetch(`${API_URL}/api/analyze`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: msgs, max_tokens: 1000 })
-      });
-
-      const data = await resp.json();
-      const reply = data.content?.map(c => c.text||'').join('') || 'Não consegui responder agora.';
-      document.getElementById(tid)?.remove();
-      appendMsg('ai', reply.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>'));
-      chatHistory.push({ role:'assistant', content: reply });
-    } catch(e) {
-      document.getElementById(tid)?.remove();
-      appendMsg('ai', '⚠️ Problema de conexão. Tente novamente!');
-    }
-    isChatting = false;
-  }
-
-  function appendMsg(role, content, id) {
-    const msgs = document.getElementById('chatMessages');
-    const div = document.createElement('div');
-    div.className = `msg ${role}`;
-    if (id) div.id = id;
-    div.innerHTML = `<div class="msg-avatar ${role}">${role==='ai'?'🦁':'👤'}</div><div class="msg-bubble">${content}</div>`;
-    msgs.appendChild(div);
-    msgs.scrollTop = msgs.scrollHeight;
-  }
-
-  function handleKey(e) {
-    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); }
-    const ta = e.target;
-    ta.style.height = 'auto';
-    ta.style.height = Math.min(ta.scrollHeight, 100) + 'px';
-  }
+function handleKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); }
+  const ta = e.target;
+  ta.style.height = 'auto';
+  ta.style.height = Math.min(ta.scrollHeight, 100) + 'px';
+}
 </script>
 </body>
 </html>
